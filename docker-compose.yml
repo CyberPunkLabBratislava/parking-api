@@ -1,0 +1,22 @@
+version: "2.4"
+
+services:
+  parking-api:
+    container_name: parking-api
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: prod
+    volumes:
+      # - .:/app:delegated
+      - ./.env:/app/.env:ro
+  proxy:
+    container_name: proxy
+    volumes:
+      # - /etc/ssl/<...>:/var/certificates/privkey.pem:ro
+      # - /etc/ssl/<...>:/var/certificates/fullchain.pem:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      # - 443:443
+      - 80:80
+    image: nginx:stable
