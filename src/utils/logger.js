@@ -3,8 +3,8 @@ const winston = require("winston")
 const { createLogger, format, transports } = winston
 const { combine, timestamp, label, json, colorize, simple } = format
 
-const LOG_FILE_PATH_INFO = path.join(__dirname, "../logs/combined.log")
-const LOG_FILE_PATH_ERROR = path.join(__dirname, "../logs/error.log")
+const LOG_FILE_PATH_INFO = path.join(__dirname, "../../logs/combined.log")
+const LOG_FILE_PATH_ERROR = path.join(__dirname, "../../logs/error.log")
 // Log rotation config
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const MAX_FILES = 5
