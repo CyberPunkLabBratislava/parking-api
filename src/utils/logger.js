@@ -1,10 +1,10 @@
-const path = require('path');
-const winston = require('winston');
-const { createLogger, format, transports } = winston;
-const { combine, timestamp, label, json, colorize, simple } = format;
+const path = require("path")
+const winston = require("winston")
+const { createLogger, format, transports } = winston
+const { combine, timestamp, label, json, colorize, simple } = format
 
-const LOG_FILE_PATH_INFO = path.join(__dirname, '../logs/combined.log')
-const LOG_FILE_PATH_ERROR = path.join(__dirname, '../logs/error.log')
+const LOG_FILE_PATH_INFO = path.join(__dirname, "../logs/combined.log")
+const LOG_FILE_PATH_ERROR = path.join(__dirname, "../logs/error.log")
 // Log rotation config
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const MAX_FILES = 5
@@ -14,7 +14,7 @@ const logFormat = format.printf(info => `${info.timestamp} ${info.level} [${info
 // define the custom settings for each transport (file, console)
 const options = {
     file: {
-        level: 'info',
+        level: "info",
         filename: LOG_FILE_PATH_INFO,
         handleExceptions: true,
         maxsize: MAX_FILE_SIZE,
@@ -26,7 +26,7 @@ const options = {
         )
     },
     errorfile: {
-        level: 'error',
+        level: "error",
         filename: LOG_FILE_PATH_ERROR,
         handleExceptions: true,
         maxsize: MAX_FILE_SIZE,
@@ -38,7 +38,7 @@ const options = {
         )
     },
     console: {
-        level: 'debug',
+        level: "debug",
         handleExceptions: true,
         timestamp: true,
         format: combine(
@@ -61,8 +61,8 @@ const logger = createLogger({
 })
 
 function parseMsg(x) {
-    const y = typeof x === 'object' ? JSON.stringify(x) : x;
-    return y;
+    const y = typeof x === "object" ? JSON.stringify(x) : x
+    return y
 }
 
-module.exports = logger;
+module.exports = logger
